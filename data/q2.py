@@ -68,4 +68,4 @@ axes[1].set_ylabel('Apparent $K_s$ [mag]')
 
 # Adjust layout and show plot
 plt.tight_layout()
-plt.savefig('/home/el1as/github/astro3/astro_comp_assignment3/figurescmds_M67.png', dpi=200)
+plt.savefig('/home/el1as/github/astro3/astro_comp_assignment3/figures/cmds M67.png', dpi=200)
