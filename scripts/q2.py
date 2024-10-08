@@ -23,11 +23,15 @@ job = Gaia.launch_job(query)
 # Get the results
 result = job.get_results()
 
+print(f"Number of stars from initial query: {len(result)}")
+
 # Apply quality cut: filter out rows where 'ph_qual' is not 'AAA'
 filtered_1 = result[result['ph_qual'] == 'AAA']
 
 # Filter to identify stars with negative or non-positive parallaxes
 filtered_2 = filtered_1[filtered_1['parallax'] > 0]
+
+print(f"Number of stars after quality cuts: {len(filtered_2)}")
 
 # INFO FOR PLOT 1
 # Calculate distance in parsecs
@@ -50,7 +54,7 @@ ks_mag = filtered_2['ks_m']
 # Create a figure with two panels
 fig, axes = plt.subplots(1, 2, figsize=(10, 5))
 
-# Panel 1: Color-Magnitude Diagram (CMD)
+# Panel 1: BP-RP vs G CMD
 axes[0].scatter(bp_rp_color, absolute_g_mag, s=1, color='blue')
 axes[0].invert_yaxis()  # Invert y-axis for absolute magnitude
 axes[0].set_xlabel('BP - RP [mag]')
@@ -67,7 +71,7 @@ axes[0].tick_params(axis='both', which='minor', direction='in', top=True, right=
 axes[0].xaxis.set_minor_locator(ticker.AutoMinorLocator())
 axes[0].yaxis.set_minor_locator(ticker.AutoMinorLocator())
 
-# Panel 2: 
+# Panel 2: J-Ks vs Ks CMD
 axes[1].scatter(j_ks_color, ks_mag, s=1, color='red')
 axes[1].invert_yaxis()  # Invert y-axis for absolute magnitude
 axes[1].set_xlabel('J - $K_s$ [mag]')
