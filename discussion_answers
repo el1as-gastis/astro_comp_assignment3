@@ -1,0 +1,62 @@
+# Q2 DISCUSSION
+# 1018 stars were returned in the initial query
+# 988 stars remain after the two quality cuts 
+
+# Given that the they need to know whether there are enough bright objects in this region, we can compare the number of fibres on the HERMES spectrograph to the 
+# number of sources returned by the query after the quality cuts.
+# https://aat.anu.edu.au/science/instruments/current/HERMES suggests that the fibres allow for 392 simultaneous spectra to be acquired. Given that the query 
+# returned 988 rows even after the quality cuts, there are more than enough objects within this field for observation. Infact, they may have to be chosen
+# on merit as there are way more than required.
+
+
+
+
+# Q3.1 DISCUSSION
+# The linear fit that has been used returned a slope and intercept as shown below with uncertainties 
+# Slope: -0.033250 ± 0.000018
+# Intercept: 9.122319 ± 0.000282
+
+# Although gridsize won't affect the fit and isn't technically a hyperparameter, it influences how the data is visualised
+# 2 True hyperparameters have been used though. The first was a rescaling of R_Gal to its standard deviation to improve the fitting process
+# Secondly, an initial guess for the fit slope and intercept are given to hopefully produce a better convergence
+
+
+# A visual inspection of the residuals shows that they expand in a cone shape for increasing R. This is expected by visually inspecting the data
+# to see that A(O) is not as localised for higher radii. This scatter is sort of centred on A(O)=0, proving to be a decent fit.
+# Visually, the fit appears to underestimate the metallicity at very low R. This is shown in the residual plot by the apparent shift of the cone slightly above the A(O)=0 shaded line. 
+# Interestingly, the scatter appears to favour positive residuals, indicating and underestimation of the metallicity, seen better at high radii (more sore not in the bulge, but in the spiral arms).
+
+# Statistical metrics have been produced for this fit and are as follows
+# R-squared: 0.872884
+# RMS: 0.087580
+# The R**2 suggests that the fit explains a majority of the data variance - expressing a generally good fit. Additionally, the RMS, definted as the average residual, is quite low compared
+# to the magnitude of typical A(O) values, this supports the generally good fit provided. 
+
+# to investigate the performance of the fit in general, and quantify performance in regions of good but also importantly, bad regions, RMS was calculated for bins of 5kpc
+# R_range: 0.050164785236120224 to 5.040125370025635
+#   RMS = 0.036838
+# R_range: 5.040125370025635 to 10.030086517333984
+#   RMS = 0.050154
+# R_range: 10.030086517333984 to 15.020047187805176
+#   RMS = 0.076267
+# R_range: 15.020047187805176 to 20.010007858276367
+#   RMS = 0.102663
+# R_range: 20.010007858276367 to 24.999967575073242
+#   RMS = 0.113591
+
+# RMS appears to increase for increasing R, supporting the view that the fit slowly loses performance for increasing radii.
+
+
+
+
+
+# Q3.2 DISCUSSION
+# The choice of bins was interesting. If the choice of bins was too small (large spatial extent per bin - few bins), then the result would lose spatial resolution and fine detail.
+# If the choice of bins was small (small spatial extent - many bins) then we will encounter that regions of fewer data points will become even more sparce - effectuively becoming an empty pixel. 
+# as you increase the number of bins, there is less data in each bin. more and more bins will start containing no data points and the white pixels start to take over.
+
+# the linear fit suggests in principle that the metallicity decreases linearly for increasing R. This will clearly fail to consider any localised metallicity differences within regions of
+# perhaps, spiral arms, where much of a galaxy's star formation exists (enriching the environment with oxygen). So, since we expect that much of a galaxy's star formation exists in the outer 
+# regions of a galaxy, hence large R, and given that residuals appear to grow with R, this may be why we see this behaviour.
+# more appropriately, there are localised hotspots of overestimated residuals, indicating an underestimate of oxygen. This is likely the site of ongoing starformation which enriches that 
+# environment, and giving a higher than preticted metallicity.
