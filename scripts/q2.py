@@ -1,6 +1,7 @@
 from astroquery.gaia import Gaia
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.ticker as ticker
 
 query = """
 SELECT *
@@ -56,12 +57,32 @@ axes[0].set_xlabel('BP - RP [mag]')
 axes[0].set_ylabel('Absolute G [mag]')
 axes[0].set_title('BP - RP vs Absolute G CMD of M67')
 
+# Set inward ticks on all sides for Panel 1
+axes[0].tick_params(axis='both', direction='in', top=True, right=True)
+
+# Add minor ticks
+axes[0].minorticks_on()
+axes[0].tick_params(axis='both', which='minor', direction='in', top=True, right=True)
+# Use AutoMinorLocator to add subticks between each major tick
+axes[0].xaxis.set_minor_locator(ticker.AutoMinorLocator())
+axes[0].yaxis.set_minor_locator(ticker.AutoMinorLocator())
+
 # Panel 2: 
 axes[1].scatter(j_ks_color, ks_mag, s=1, color='red')
 axes[1].invert_yaxis()  # Invert y-axis for absolute magnitude
 axes[1].set_xlabel('J - $K_s$ [mag]')
 axes[1].set_ylabel('Apparent $K_s$ [mag]')
 axes[1].set_title('J - $K_s$ vs Apparent $K_s$ CMD of M67')
+
+# Set inward ticks on all sides for Panel 2
+axes[1].tick_params(axis='both', direction='in', top=True, right=True)
+
+# Add minor ticks
+axes[1].minorticks_on()
+axes[1].tick_params(axis='both', which='minor', direction='in', top=True, right=True)
+# Use AutoMinorLocator to add subticks between each major tick
+axes[1].xaxis.set_minor_locator(ticker.AutoMinorLocator())
+axes[1].yaxis.set_minor_locator(ticker.AutoMinorLocator())
 
 # Adjust layout and show plot
 plt.tight_layout()

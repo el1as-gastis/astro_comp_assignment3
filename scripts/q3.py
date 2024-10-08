@@ -5,6 +5,7 @@ from scipy.optimize import curve_fit
 from scipy.stats import binned_statistic_2d
 from matplotlib.colors import LogNorm
 import matplotlib.lines as mlines
+import matplotlib.ticker as ticker
 
 # File path for fits file
 fits_file_path = '/home/el1as/github/astro3/astro_comp_assignment3/data/nihao_uhd_simulation_g8.26e11_xyz_positions_and_oxygen_ao.fits'
@@ -109,6 +110,15 @@ axes[0].set_title('Logarithmic density plot of R$Gal$ vs. A(O)')
 # Combine both the custom hexbin legend and the linear fit legend
 axes[0].legend(handles=[hexbin_legend, fit_line])
 
+# Set inward ticks on all sides for Panel 1
+axes[0].tick_params(axis='both', direction='in', top=True, right=True)
+
+# Add minor ticks
+axes[0].minorticks_on()
+axes[0].tick_params(axis='both', which='minor', direction='in', top=True, right=True)
+# Use AutoMinorLocator to add subticks between each major tick
+axes[0].xaxis.set_minor_locator(ticker.AutoMinorLocator())
+axes[0].yaxis.set_minor_locator(ticker.AutoMinorLocator())
 
 # Panel 2: Scatter plot of residuals
 axes[1].scatter(R_gal, residuals, s=.1, color='red')
@@ -116,6 +126,16 @@ axes[1].set_xlabel('R$Gal$ [kpc]')
 axes[1].set_ylabel(r'$\Delta A(O)$')
 axes[1].axhline(0, color='black', linestyle='--')  # Add a horizontal line at zero
 axes[1].set_title('Residuals of the linear fit function')
+
+# Set inward ticks on all sides for Panel 2
+axes[1].tick_params(axis='both', direction='in', top=True, right=True)
+
+# Add minor ticks
+axes[1].minorticks_on()
+axes[1].tick_params(axis='both', which='minor', direction='in', top=True, right=True)
+# Use AutoMinorLocator to add subticks between each major tick
+axes[1].xaxis.set_minor_locator(ticker.AutoMinorLocator())
+axes[1].yaxis.set_minor_locator(ticker.AutoMinorLocator())
 
 plt.tight_layout()
 fig.savefig('/home/el1as/github/astro3/astro_comp_assignment3/figures/Rgal_vs_A(0)_fit_and_residuals.png')
@@ -170,24 +190,54 @@ fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 
 # Panel (a): Simulated A(O)
 im1 = axes[0].imshow(stat_simulated.T, origin='lower', cmap='magma', extent=[min(x), max(x), min(y), max(y)])
-axes[0].set_xlabel('x')
-axes[0].set_ylabel('y')
+axes[0].set_xlabel('x [kpc]')
+axes[0].set_ylabel('y [kpc]')
 axes[0].set_title(' 2D-histogram of the median simulated A(O)')
 fig.colorbar(im1, ax=axes[0])
 
+# Set inward ticks on all sides for Panel 1
+axes[0].tick_params(axis='both', direction='in', top=True, right=True)
+
+# Add minor ticks
+axes[0].minorticks_on()
+axes[0].tick_params(axis='both', which='minor', direction='in', top=True, right=True)
+# Use AutoMinorLocator to add subticks between each major tick
+axes[0].xaxis.set_minor_locator(ticker.AutoMinorLocator())
+axes[0].yaxis.set_minor_locator(ticker.AutoMinorLocator())
+
 # Panel (b): Fitted A(O)
 im2 = axes[1].imshow(stat_fitted.T, origin='lower', cmap='magma', extent=[min(x), max(x), min(y), max(y)])
-axes[1].set_xlabel('x')
-axes[1].set_ylabel('y')
+axes[1].set_xlabel('x [kpc]')
+axes[1].set_ylabel('y [kpc]')
 axes[1].set_title('2D-histogram of the median fitted A(O)')
 fig.colorbar(im2, ax=axes[1])
 
+# Set inward ticks on all sides for Panel 1
+axes[1].tick_params(axis='both', direction='in', top=True, right=True)
+
+# Add minor ticks
+axes[1].minorticks_on()
+axes[1].tick_params(axis='both', which='minor', direction='in', top=True, right=True)
+# Use AutoMinorLocator to add subticks between each major tick
+axes[1].xaxis.set_minor_locator(ticker.AutoMinorLocator())
+axes[1].yaxis.set_minor_locator(ticker.AutoMinorLocator())
+
 # Panel (c): Residuals ∆A(O)
 im3 = axes[2].imshow(stat_residuals.T, origin='lower', cmap='magma', extent=[min(x), max(x), min(y), max(y)])
-axes[2].set_xlabel('x')
-axes[2].set_ylabel('y')
+axes[2].set_xlabel('x [kpc]')
+axes[2].set_ylabel('y [kpc]')
 axes[2].set_title(' 2D-histogram of the median residuals ∆A(O)')
 fig.colorbar(im3, ax=axes[2])
+
+# Set inward ticks on all sides for Panel 1
+axes[2].tick_params(axis='both', direction='in', top=True, right=True)
+
+# Add minor ticks
+axes[2].minorticks_on()
+axes[2].tick_params(axis='both', which='minor', direction='in', top=True, right=True)
+# Use AutoMinorLocator to add subticks between each major tick
+axes[2].xaxis.set_minor_locator(ticker.AutoMinorLocator())
+axes[2].yaxis.set_minor_locator(ticker.AutoMinorLocator())
 
 # Adjust layout and save the figure
 plt.tight_layout()
