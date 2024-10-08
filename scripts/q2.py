@@ -28,7 +28,6 @@ filtered_1 = result[result['ph_qual'] == 'AAA']
 # Filter to identify stars with negative or non-positive parallaxes
 filtered_2 = filtered_1[filtered_1['parallax'] > 0]
 
-print(filtered_2['parallax'])
 
 # INFO FOR PLOT 1
 # Calculate distance in parsecs
@@ -56,15 +55,14 @@ axes[0].scatter(bp_rp_color, absolute_g_mag, s=1, color='blue')
 axes[0].invert_yaxis()  # Invert y-axis for absolute magnitude
 axes[0].set_xlabel('BP - RP [mag]')
 axes[0].set_ylabel('Absolute G [mag]')
+axes[0].set_title('BP - RP vs Absolute G CMD of M67')
 
-
-# Panel 2: (You can decide what to plot here, maybe something like parallax vs. G magnitude)
-# Example: Plot parallax vs G magnitude
+# Panel 2: 
 axes[1].scatter(j_ks_color, ks_mag, s=1, color='red')
 axes[1].invert_yaxis()  # Invert y-axis for absolute magnitude
 axes[1].set_xlabel('J - $K_s$ [mag]')
 axes[1].set_ylabel('Apparent $K_s$ [mag]')
-
+axes[1].set_title('J - $K_s$ vs Apparent $K_s$ CMD of M67')
 
 # Adjust layout and show plot
 plt.tight_layout()
