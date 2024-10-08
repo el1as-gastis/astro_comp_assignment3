@@ -62,7 +62,7 @@ rms = np.sqrt(np.mean(residuals**2))
 print(f"R-squared: {r_squared:.6f}")
 print(f"RMS: {rms:.6f}")
 
-# Define the number of bins 
+# Define the number of bins for residual investigation at different radii
 num_bins = 5  
 bins = np.linspace(min(R_gal), max(R_gal), num_bins + 1)
 
@@ -83,19 +83,18 @@ for i in range(num_bins):
     rms_bin = np.sqrt(np.mean(residuals_bin ** 2))
     rms_per_bin.append(rms_bin)
 
-# Print RMS and R^2 values for each bin
+# Print RMS for each radius bin
 for i in range(num_bins):
     print(f"R_range: {bins[i]} to {bins[i + 1]}")
     print(f"  RMS = {rms_per_bin[i]:.6f}")
     
 
-# Plot
+# Plots
 fig, axes = plt.subplots(1, 2, figsize=(10, 5))
 
 # Panel 1: Logarithmic density plot of R_gal vs A_o with linear fit
 im0 = axes[0].hexbin(R_gal, A_o, gridsize=80, cmap='magma', bins='log')
-fit_line, = axes[0].plot(R_gal, A_o_fit, color='BLACK', label='Linear Fit', linewidth=1)  # Assign fit line to a variable
-
+fit_line, = axes[0].plot(R_gal, A_o_fit, color='BLACK', label='Linear Fit', linewidth=1) 
 # Manually create a legend entry for the hexbin plot
 hexbin_legend = mlines.Line2D([], [], color='orange', marker='h', markersize=10, linestyle='None', label='Data')
 
@@ -212,7 +211,7 @@ axes[1].set_ylabel('y [kpc]')
 axes[1].set_title('2D-histogram of the median fitted A(O)')
 fig.colorbar(im2, ax=axes[1])
 
-# Set inward ticks on all sides for Panel 1
+# Set inward ticks on all sides for Panel 2
 axes[1].tick_params(axis='both', direction='in', top=True, right=True)
 
 # Add minor ticks
@@ -229,7 +228,7 @@ axes[2].set_ylabel('y [kpc]')
 axes[2].set_title(' 2D-histogram of the median residuals ∆A(O)')
 fig.colorbar(im3, ax=axes[2])
 
-# Set inward ticks on all sides for Panel 1
+# Set inward ticks on all sides for Panel 3
 axes[2].tick_params(axis='both', direction='in', top=True, right=True)
 
 # Add minor ticks
