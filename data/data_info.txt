@@ -1,1 +1,1 @@
-# Here lie the scripts (and data) to each question for the assignment!
+# Here lies the data needed for the assignment
