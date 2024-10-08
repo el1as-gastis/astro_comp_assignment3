@@ -118,7 +118,7 @@ axes[1].axhline(0, color='black', linestyle='--')  # Add a horizontal line at ze
 axes[1].set_title('Residuals of the linear fit function')
 
 plt.tight_layout()
-fig.savefig('/home/el1as/github/astro3/astro_comp_assignment3/figures/rg_vs_ao_fit_and_residuals.png')
+fig.savefig('/home/el1as/github/astro3/astro_comp_assignment3/figures/Rgal_vs_A(0)_fit_and_residuals.png')
 plt.close()
 
 
@@ -191,5 +191,5 @@ fig.colorbar(im3, ax=axes[2])
 
 # Adjust layout and save the figure
 plt.tight_layout()
-fig.savefig('/home/el1as/github/astro3/astro_comp_assignment3/figures/median_AO_3panel.png')
+fig.savefig('/home/el1as/github/astro3/astro_comp_assignment3/figures/3panel_xy_medians.png')
 plt.close()
