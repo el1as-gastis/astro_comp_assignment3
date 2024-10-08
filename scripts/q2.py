@@ -28,6 +28,7 @@ filtered_1 = result[result['ph_qual'] == 'AAA']
 # Filter to identify stars with negative or non-positive parallaxes
 filtered_2 = filtered_1[filtered_1['parallax'] > 0]
 
+print(filtered_2)
 
 # INFO FOR PLOT 1
 # Calculate distance in parsecs
